@@ -1,0 +1,60 @@
+<html>
+<head>
+<script>
+function draw() {
+var canvas=document.getElementById('canvas');
+var ctx=canvas.getContext('2d');
+var a=document.getElementById("a").value;
+var b=document.getElementById("b").value;
+var c=document.getElementById("c").value;
+var d=document.getElementById("d").value;
+var dx=document.getElementById("dx").value;
+var dy=document.getElementById("dy").value;
+var n=document.getElementById("n").value;
+var R=100;
+var ugol=2*3.14/n;
+var alpha=0;
+var shift=200;
+var tekx=R, teky=0;
+ctx.clearRect(0, 0, 10000, 10000);
+ctx.beginPath();
+ctx.moveTo(shift+tekx, shift+teky);
+for(var i=0; i<n; i++) {
+alpha += ugol;
+tekx=Math.floor(R*Math.cos(alpha));
+teky=Math.floor(R*Math.sin(alpha));
+ctx.lineTo(tekx+shift, teky+shift);
+ctx.fill();
+}
+ctx.closePath();
+ctx.stroke();
+ctx.setTransform(a, b, c, d, dx, dy);
+ctx.clearRect(0, 0, 10000, 10000);
+ctx.beginPath();
+ctx.moveTo(shift+tekx, shift+teky);
+for(var i=0; i<n; i++) {
+alpha += ugol;
+tekx=Math.floor(R*Math.cos(alpha));
+teky=Math.floor(R*Math.sin(alpha));
+ctx.lineTo(tekx+shift, teky+shift);
+ctx.fill();
+}
+ctx.closePath();
+ctx.stroke();
+}
+</script>
+</head>
+<body>
+Горизонтальное растяжение: <input type="number" id="a"> (1 – исходный размер)<br>
+Вертикальный поворот: <input type="number" id="b"> (0 – исходный размер)<br>
+Горизонтальный поворот: <input type="number" id="c"> (0 – исходный размер)<br>
+Вертикальное растяжение: <input type="number" id="d"> (1 – исходный размер)<br>
+Горизонтальный сдвиг: <input type="number" id="dx"><br>
+Вертикальный сдвиг: <input type="number" id="dy"><br>
+Количество углов: <input type="number" id="n"><br>
+<input type="button" value="Показать" onclick="draw()"/><br>
+<canvas id ="canvas" width ="1000" height="1000">
+</canvas>
+</body>
+</html>
+</html>
